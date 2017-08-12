@@ -69,7 +69,7 @@ namespace DrunkPC
 
             while(true)
             {
-                Console.WriteLine(Cursor.Position.ToString());
+                // Console.WriteLine(Cursor.Position.ToString());
 
                 // Generate the random amount to move the cursor on X and Y
                 moveX = _random.Next(50) - 25;
@@ -97,8 +97,18 @@ namespace DrunkPC
 
             while (true)
             {
+                // Generate a random capital letter
+                char key = (char)(_random.Next(25) + 65);
 
-                Thread.Sleep(500);
+                // 50/50 make it lower case
+                if(_random.Next(2) == 0)
+                {
+                    key = Char.ToLower(key);
+                }
+
+                SendKeys.SendWait(key.ToString());
+
+                Thread.Sleep(_random.Next(500));
 
             }  // closes while loop
         }  // closes DrunkKeyboardThread
