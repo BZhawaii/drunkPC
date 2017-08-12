@@ -95,7 +95,7 @@ namespace DrunkPC
         /// </summary>
         public static void DrunkKeyboardThread()
         {
-            Console.WriteLine("DrunkKeyboardThread Started");
+           //  Console.WriteLine("DrunkKeyboardThread Started");
 
             while (true)
             {
@@ -121,7 +121,7 @@ namespace DrunkPC
         /// </summary>
         public static void DrunkSoundThread()
         {
-            Console.WriteLine("DrunkSoundThread Started");
+          //  Console.WriteLine("DrunkSoundThread Started");
 
             while (true)
             {
@@ -161,11 +161,35 @@ namespace DrunkPC
         /// </summary>
         public static void DrunkPopupThread()
         {
-            Console.WriteLine("DrunkPopupThread Started");
+            // Console.WriteLine("DrunkPopupThread Started");
 
             while (true)
             {
-                Thread.Sleep(500);
+                // Every 10 seconds roll the dice and 90% of time show dialog
+                if(_randome.Next(100) > 90)
+                {
+                    // Determine which message to show user
+                    switch(_random.Next(2))
+                    {
+                        case 0:
+                            MessageBox.Show(
+                                "Internet explorer has stopped working", 
+                                "Internet Explorer",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                            break;
+                        case 1:
+                            MessageBox.Show(
+                                "Your system is running low on resources",
+                                "Microsoft Windows",
+                                MessageBoxButtons.OK,
+                                MessageBoxButtons.Warning);
+                            break;
+                    }  // closes switch
+
+                }  // closes if
+
+                Thread.Sleep(10000);
 
             }  // closes while loop
         }  // closes DrunkPopupThread
