@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Threading;
 using System.Windows.Forms;
+using System.Media;
 
 /// <summary>
 /// Application Name: Drunk PC
@@ -62,7 +64,7 @@ namespace DrunkPC
         /// </summary>
         public static void DrunkMouseThread()
         {
-            Console.WriteLine("DrunkMouseThread Started");
+            // Console.WriteLine("DrunkMouseThread Started");
 
             int moveX = 0;
             int moveY = 0;
@@ -123,6 +125,31 @@ namespace DrunkPC
 
             while (true)
             {
+                // Determine if we're going to play a sound this time through the loop with 80% chance
+                if(_random.Next(100) > 80)
+                {
+                    // Randomly select a system sound
+                    switch(_random.Next(5))
+                    {
+                        case 0:
+                            SystemSounds.Asterisk.Play();
+                            break;
+                        case 1:
+                            SystemSounds.Beep.Play();
+                            break;
+                        case 2:
+                            SystemSounds.Exclamation.Play();
+                            break;
+                        case 3:
+                            SystemSounds.Hand.Play();
+                            break;
+                        case 4:
+                            SystemSounds.Question.Play();
+                            break;
+
+                    }  // closes switch
+
+                }
                 Thread.Sleep(500);
 
             }  // closes while loop
